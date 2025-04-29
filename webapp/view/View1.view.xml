@@ -1,0 +1,106 @@
+<mvc:View xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" controllerName="demo.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <Bar>
+                <contentRight><Button text="{i18n>label}" id="demoButton" press="onDemo"/>
+                <!-- <Button text="{i18n>label}" id="demoButton1" press="onPress"/> -->
+                </contentRight>
+            </Bar>
+            <List items="{Designations>/aDes}" itemPress="onDetail">
+                <StandardListItem title="{Designations>name}" counter="{Designations>count}" type="Active" />
+            </List>
+            <Panel class="sapUiSmallMargin" expandable="true" headerText="Find Employee Details">
+                <Label text="Select an employee" labelFor="valueHelpInput"/>
+                <MultiInput id="valueHelpInput"
+                    showValueHelp="true"
+                    valueHelpRequest="onValueHelpRequested"
+                    placeholder="Select an ID"
+                    suggestionRows="{
+                        path: '/EMPLOYEE',
+                        length: 10
+                    }">
+                    <suggestionColumns>
+                        <Column>
+                            <Label text="Employee ID"/>
+                        </Column>
+                        <Column>
+                            <Label text="Name"/>
+                        </Column>
+                    </suggestionColumns>
+                    <suggestionRows>
+                        <ColumnListItem>
+                            <Label text="{EMP_ID}" />
+                            <Label text="{EMP_NAME}" />
+                        </ColumnListItem>
+                    </suggestionRows>
+                </MultiInput>
+                <form:SimpleForm title="Employee Information">
+                    <form:content>
+                        <Label text="Emp Id Guid"></Label>
+                        <Input value="{valueHelpModel>/data/results/0/ID}" editable="false"></Input>
+                        <Label text="Emp Id"></Label>
+                        <Input value="{valueHelpModel>/data/results/0/EmployeeID_EMP_ID}" editable="false"></Input>
+                        <Label text="Name"></Label>
+                        <Input value="{valueHelpModel>/data1/EMP_NAME}" editable="false"></Input>
+                        <Label text="Company Name"></Label>
+                        <Input value="{valueHelpModel>/data/results/0/CompanyName}" editable="false"></Input>
+                        <Label text="Role"></Label>
+                        <Input value="{valueHelpModel>/data/results/0/Role}" editable="false"></Input>
+                        <Label text="Designation"></Label>
+                        <Input value="{valueHelpModel>/data1/EMP_DESIG}" editable="false"></Input>
+                        <Label text="Start Date"></Label>
+                        <Input value="{valueHelpModel>/data/results/0/StartDate}" editable="false"></Input>
+                        <Label text="End Date"></Label>
+                        <Input value="{valueHelpModel>/data/results/0/EndDate}" editable="false"></Input>
+                        <Label text="Blood Group"></Label>
+                        <Input value="{valueHelpModel>/data1/EMP_BLODD_GRP}" editable="false"></Input>
+                        <Label text="Email"></Label>
+                        <Input value="{valueHelpModel>/data1/EMP_EMAIL}" editable="false"></Input>
+                        <Label text="Contact"></Label>
+                        <Input value="{valueHelpModel>/data1/EMP_CONT}" editable="false"></Input>
+                        <Label text="Address"></Label>
+                        <Input value="{valueHelpModel>/data1/EMP_ADDRESS}" editable="false"></Input>
+                        <Label text="Branch"></Label>
+                        <Input value="{valueHelpModel>/data1/EMP_BRANCH}" editable="false"></Input>
+                        <Label text="Responsibilities"></Label>
+                        <Input value="{valueHelpModel>/data/results/0/Responsibilities}" editable="false"></Input>
+                    </form:content>
+                </form:SimpleForm>
+            </Panel>
+        </content>
+        <footer>
+            <Bar >
+                <contentRight><Button text="{i18n>button1}" id="clickButton1" press="onPlant" type="Emphasized"></Button></contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>
+<!-- <Table id="tableData" items="{/items}">
+    <columns>
+        <Column ><Text text="ID" /> </Column>
+        <Column ><Text text="NAME" /> </Column>
+        <Column ><Text text="BLOOD GROUP" /> </Column>
+        <Column ><Text text="DESIGNATION" /> </Column>
+        <Column ><Text text="EMAIL" /> </Column>
+        <Column ><Text text="CONTACT" /> </Column>
+        <Column ><Text text="ADDRESS" /> </Column>
+        <Column ><Text text="BRANCH" /> </Column>
+    </columns>
+    <items>
+        <ColumnListItem>
+            <cells>
+                <Text text="{EMP_ID}" />
+                <Text text="{EMP_NAME}" />
+                <Text text="{EMP_BLODD_GRP}" />
+                <Text text="{EMP_DESIG}" />
+                <Text text="{EMP_EMAIL}" />
+                <Text text="{EMP_CONT}" />
+                <Text text="{EMP_ADDRESS}" />
+                <Text text="{EMP_BRANCH}" />
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table> -->
+<!-- <Button text="{i18n>button1}" id="clickButton" press="onClick"></Button> -->

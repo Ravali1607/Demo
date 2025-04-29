@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:core= "sap.ui.core"
+xmlns= "sap.m"
+>    
+    <Dialog id="inputFields" title="Input Fields">
+        <form:SimpleForm >
+            <Label text="Input 1" />
+            <Input type="Number" id="field1" liveChange="onField"/>
+            <Label text="Input 2" />
+            <Input type="Number" id="field2" liveChange="onField"/>
+            <Label text="Input 3" />
+            <Input type="Number" id="field3" liveChange="onField"/>
+        </form:SimpleForm>
+        <!-- <Text id="sum"></Text> -->
+        <footer>
+        <Toolbar >
+            <ToolbarSpacer ></ToolbarSpacer>
+            <Button text="Cancel" press="onCancel"></Button>
+        </Toolbar>
+    </footer>
+    </Dialog>
+</core:FragmentDefinition>

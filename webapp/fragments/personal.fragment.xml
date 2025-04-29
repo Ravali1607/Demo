@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:core= "sap.ui.core"
+xmlns= "sap.m"
+>    
+		<Dialog id="personal" >
+        <customHeader>
+            <Bar> 
+                <contentLeft><Text text="Employee Info"></Text></contentLeft>
+                <!-- <contentRight><Button icon="sap-icon://" press="onRefresh"></Button></contentRight> -->
+            </Bar>
+        </customHeader>
+			<VBox class="sapUiSmallMargin"> 
+            
+                <Label text="Emp Id" />
+                <Text id="empId" class="sapUiSmallMarginBottom" />
+                <Label text="Name" />
+                <Text id="empName" class="sapUiSmallMarginBottom" />
+                <Label text="Blood Group" />
+                <Text id="empBld" class="sapUiSmallMarginBottom" />
+                <Label text="Designation" />
+                <Text id="empDes" class="sapUiSmallMarginBottom" />
+                <Label text="Email" />
+                <Text id="empEmail" class="sapUiSmallMarginBottom" />
+                <Label text="Contact" />
+                <Text id="empCont" class="sapUiSmallMarginBottom" />
+                <Label text="Address" />
+                <Text id="empAdd" class="sapUiSmallMarginBottom" />
+                <Label text="Branch" />
+                <Text id="empBran" class="sapUiSmallMarginBottom" />
+        
+            </VBox>
+            <footer>
+                <Toolbar >
+                    <ToolbarSpacer ></ToolbarSpacer>
+                    <Button text="Close" press="onEmpClose"></Button>
+                </Toolbar>
+            </footer>
+		</Dialog>
+</core:FragmentDefinition>

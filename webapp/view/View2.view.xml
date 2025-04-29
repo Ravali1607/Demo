@@ -1,0 +1,13 @@
+<mvc:View xmlns:core="sap.ui.core" controllerName="demo.controller.VIew2"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page1" showHeader="false">
+        <Bar >
+            <contentLeft><Button icon="sap-icon://nav-back" press="onBack"></Button></contentLeft>
+            <contentMiddle><Text text="Plant Information" class="plant"></Text></contentMiddle>
+        </Bar>
+        <List items="{/PLANTS}" itemPress="onPlantDetail">
+            <StandardListItem title="{PLANT_NAME}" description="{PLANT_ID}" type="Active" />
+        </List>
+    </Page>
+</mvc:View>

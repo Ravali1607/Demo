@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:core= "sap.ui.core"
+xmlns= "sap.m"
+>    
+    <Dialog id="valueHelpId" title="Employee ID">
+        <List id="idList" items="{/items}" itemPress="onListId">
+            <StandardListItem title="{EMP_ID}" type="Active"></StandardListItem>
+        </List>
+        <footer>
+            <Toolbar >
+                <ToolbarSpacer ></ToolbarSpacer>
+                <Button text="Cancel" type="Emphasized" press="onValueHelpCancel"></Button>
+            </Toolbar>
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>
