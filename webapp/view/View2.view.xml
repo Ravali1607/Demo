@@ -8,7 +8,6 @@
             <contentLeft><Button icon="sap-icon://nav-back" press="onBack"></Button></contentLeft>
             <contentMiddle><Text text="Plant Information" class="plant"></Text></contentMiddle>
         </Bar>
-        <PullToRefresh ></PullToRefresh>
         <List items="{/PLANTS}" itemPress="onPlantDetail">
             <StandardListItem title="{PLANT_NAME}" description="{PLANT_ID}" type="Active" />
         </List>
