@@ -18,6 +18,7 @@ sap.ui.define([
         },
 
         plantMethod: function(oEvent){
+            that.byId("branchTable").destroyColumns();
             var oData = oEvent.getParameter("arguments");
             var location = oData.plantLocation;
             var oLocation = new JSONModel({
@@ -64,6 +65,15 @@ sap.ui.define([
                     })
                 }
             })
+            that.getOwnerComponent().getModel().read("/Customers",{
+                filters : [new Filter("Branch", FilterOperator.EQ, location)],
+                success: function(oData){
+                    var oCustomerModel = new JSONModel({
+                        customers : oData.results
+                    })
+                    that.getView().setModel(oCustomerModel);
+                }
+            })
         },
 
         onAfterRendering: function(){
@@ -82,8 +92,8 @@ sap.ui.define([
         },
         
         onBack: function(){
-            that.byId("branchTable").destroyColumns();
             that.getOwnerComponent().getRouter().navTo("View2");
+            that.byId("branchTable").destroyColumns();
         },
         
         onSort: function(){
@@ -96,23 +106,23 @@ sap.ui.define([
             oBinding.sort(oSorter);
         },
         
-        onTable: function(oEvent){
-            if(!that.empExp){
-                that.empExp = sap.ui.xmlfragment("demo.fragments.empInfo",that);
-            }
-            var oModel = that.getView().getModel("oExpDataModel");
-            var oDetails = oModel.getProperty("/items");
-            var oSelectedItem = that.getView().byId("branchTable").getSelectedItem();
-            var oSelected = oSelectedItem.getBindingContext().getProperty("EMP_ID")
-            var oFilter = oDetails.filter(function(id){
-                return id.EmployeeID_EMP_ID === oSelected
-            })
-            var oFilteredModel = new sap.ui.model.json.JSONModel({
-                items : oFilter
-            })
-            that.empExp.setModel(oFilteredModel,"ExpModel")
-            that.empExp.open();
-        },
+        // onTable: function(oEvent){
+        //     if(!that.empExp){
+        //         that.empExp = sap.ui.xmlfragment("demo.fragments.empInfo",that);
+        //     }
+        //     var oModel = that.getView().getModel("oExpDataModel");
+        //     var oDetails = oModel.getProperty("/items");
+        //     var oSelectedItem = that.getView().byId("branchTable").getSelectedItem();
+        //     var oSelected = oSelectedItem.getBindingContext().getProperty("EMP_ID")
+        //     var oFilter = oDetails.filter(function(id){
+        //         return id.EmployeeID_EMP_ID === oSelected
+        //     })
+        //     var oFilteredModel = new sap.ui.model.json.JSONModel({
+        //         items : oFilter
+        //     })
+        //     that.empExp.setModel(oFilteredModel,"ExpModel")
+        //     that.empExp.open();
+        // },
 
         onEmpClose: function(){
             that.empExp.close();
@@ -220,10 +230,71 @@ sap.ui.define([
             });
             that.originalData = [];
             sap.m.MessageToast.show("Changes discarded");
-        }
+        },
+        onPurchase: function(){
+            if(!that.customer){
+                that.customer = sap.ui.xmlfragment("demo.fragments.customer",that);
+            }
+            that.customer.open();
+        },
+        onCreateSales: function(){
+            // var oPurchase = {
+            //     ID: sap.ui.getCore().byId("p_id").getValue(),
+            //     CustomerID_ID: sap.ui.getCore().byId("p_custId").getValue(),
+            //     ItemName: sap.ui.getCore().byId("p_item").getValue(),
+            //     ItemCost: sap.ui.getCore().byId("p_cost").getValue(),
+            //     PurchaseDate: sap.ui.getCore().byId("p_date").getValue()
+            // }
+            // that.getOwnerComponent().getModel().create("/CustomerPurchases",oPurchase,{
+            //     success: function(){
+            //         MessageToast.show("Purchases added successfully");
+            //     },error: function(){
+            //         MessageToast.show("error");
+            //     }
+            // })
+                let oCustomer = {
+                    ID : sap.ui.getCore().byId("c_id").getValue(),
+                    Name :sap.ui.getCore().byId("c_name").getValue(),
+                    Email :sap.ui.getCore().byId("c_email").getValue(),
+                    CONTACT :sap.ui.getCore().byId("c_cont").getValue(),
+                    PurchasedTillNow :sap.ui.getCore().byId("c_ptn").getValue(),
+                    Branch: sap.ui.getCore().byId("c_branch").getValue(),
+                }
+                var oModel = that.getOwnerComponent().getModel();
+                oModel.create("/Customers",oCustomer,{
+                    success:function(response){
+                        sap.m.MessageToast.show("Customer Details added successfully");
+                    },error:function(error){
+                        sap.m.MessageToast.show("Error while adding Plant");
+                        console.log(error);
+                    }
+                })
+        },
+        onCustomerDetail: function(oEvent){
+            var oSelectedCustomer = oEvent.getSource().getBindingContext().getProperty("ID");
+            that.getOwnerComponent().getModel().read("/CustomerPurchases",{
+                filters: [new Filter("CustomerID_ID", FilterOperator.EQ, oSelectedCustomer)],
+                success: function(oData){
+                    var oModel = new JSONModel({
+                        customerPurchases : oData.results
+                    })
+                    that.byId("purchaseTable").setModel(oModel);
+                    that.byId("purchasesDialog").open();
+                }
+            })
+        },
+        onClosePurchase: function(){
+            that.byId("purchasesDialog").close();
+        },
+        purchaseDateFormat: function(oDate){
+            if (oDate) {
+                var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({pattern: "dd-MM-YYYY"});
+                return oDateFormat.format(new Date(oDate));
+            }
+        },
     })
 })
-// <!----------------------    opening the fragment and displaying the details of that particular employee using press function in column list item      ------------------!>
+// <!----------------------        opening the fragment and displaying the details of that particular employee using press function in column list item      ------------------!>
 // onTable: function(oEvent){
 //     if(!that.empExp){
 //         that.empExp = sap.ui.xmlfragment("demo.fragments.empInfo",that);

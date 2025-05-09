@@ -1,0 +1,20 @@
+<mvc:View xmlns:core="sap.ui.core" controllerName="demo.controller.View4"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page3" showHeader="true" navButtonPress="onBack" showNavButton="true" title="List of Employees">
+        <content>
+            <Table items="{/EMPLOYEE}">
+                <columns>
+                    <Column ><Label text="Names"></Label></Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Active" press="onEmployeeName">
+                        <cells>
+                            <Text text="{EMP_NAME}" ></Text>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

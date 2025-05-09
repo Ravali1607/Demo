@@ -1,0 +1,49 @@
+<core:FragmentDefinition xmlns:cards="sap.f.cards" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:core= "sap.ui.core"
+xmlns= "sap.m"
+>
+    <Dialog id="sales" title="Create">
+        <!-- <form:SimpleForm >
+            <form:content>
+                <Label text="Id"></Label>
+                <Input id=""></Input>
+                <Label text="Name"></Label>
+                <Input id="c_name"></Input>
+                <Label text="Email"></Label>
+                <Input id="c_email"></Input>
+                <Label text="Contact"></Label>
+                <Input id="c_cont" type="Number" maxLength="10"></Input>
+                <Label text="Purchased Till now"></Label>
+                <Input id="c_ptn"></Input>
+                <Label text="Branch"></Label>
+                <Input id="c_branch"></Input>
+            </form:content>
+        </form:SimpleForm> -->
+        <form:SimpleForm >
+            <form:content>
+                <Label text="Id"></Label>
+                <Input id="s_id"></Input>
+                <Label text="Plant Name"></Label>
+                <Input id="s_plant" editable="false"></Input>
+                <Label text="Item name"></Label>
+                <Input id="s_item"></Input>
+                <Label text="Quantity"></Label>
+                <Input id="s_qua"></Input>
+                <Label text="Revenue"></Label>
+                <Input id="s_rev"></Input>
+                <Label text="Level"></Label>
+                <Input id="s_level"></Input>
+                <Label text="Expected"></Label>
+                <Input id="s_exp"></Input>
+                <Label text="Duration"></Label>
+                <Input id="s_dur" placeholder="number of days"></Input>
+            </form:content>
+        </form:SimpleForm>
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer ></ToolbarSpacer>
+                <Button text="Create" press="onCreateSales"></Button>
+                <Button text="Cancel" press="onCancelSales"></Button>
+            </Toolbar>
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

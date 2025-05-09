@@ -109,7 +109,21 @@
                   "target": [
                       "TargetView3"                  
                   ]
-              }
+                },
+                {
+                  "name": "View4",
+                  "pattern": "View4",
+                  "target":[
+                    "TargetView4"
+                  ]
+                },
+                {
+                  "name": "View5",
+                  "pattern": "View5/{emp}/{loc}",
+                  "target": [
+                    "TargetView5"
+                  ]
+                }
             ],
             "targets": {
                 "TargetView1": {
@@ -123,6 +137,14 @@
                 "TargetView3": {
                     "id": "View3",
                     "name": "View3"
+                },
+                "TargetView4": {
+                  "id": "View4",
+                  "name": "View4"
+                },
+                "TargetView5": {
+                  "id": "View5",
+                  "name": "View5"
                 }
             }
         },

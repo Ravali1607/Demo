@@ -1,0 +1,116 @@
+<mvc:View 
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:uxap="sap.uxap"
+    xmlns:core="sap.ui.core"
+    controllerName="demo.controller.View5"
+    height="100%">
+    <Bar >
+        <contentLeft><Button icon="sap-icon://nav-back" press="onNavBack"></Button></contentLeft>
+    </Bar>
+    <uxap:ObjectPageLayout
+        id="ObjectPageLayout"
+        showTitleInHeaderContent="true"
+        alwaysShowContentHeader="false"
+        flexEnabled="true"
+        showFooter="true"
+        binding="{/details/0}">
+        
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+                <uxap:heading>
+                    <Title text="{EMP_NAME}" wrapping="true"/>
+                </uxap:heading>
+                <uxap:expandedHeading>
+                    <Title text="{EMP_NAME}"/>
+                </uxap:expandedHeading>
+                <uxap:snappedHeading>
+                    <Title text="{EMP_NAME}"/>
+                </uxap:snappedHeading>
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+        
+        <uxap:headerContent>
+            <FlexBox wrap="Wrap" fitContainer="true" >
+				<Avatar 
+                        src="sap-icon://employee"
+                        displaySize="M"                
+                        class="sapUiTinyMarginEnd"/>
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<Link text="{EMP_CONT}"/>
+					<Link text="{EMP_EMAIL}"/>
+                    <Text text="{EMP-BRANCH}"></Text>
+				</layout:VerticalLayout>
+			</FlexBox>
+        </uxap:headerContent>
+        
+        <uxap:sections>
+            <uxap:ObjectPageSection title="Employee">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="Personal Information">
+                        <uxap:blocks>
+                            <form:SimpleForm editable="false" layout="ResponsiveGridLayout">
+                                <Label text="Id"/>
+                                <Text text="{EMP_ID}"/>
+                                <Label text="Designation"/>
+                                <Text text="{EMP_DESIG}"/>                                
+                                <Label text="Blood Group"/>
+                                <Text text="{EMP_BLODD_GRP}"/>                                
+                                <Label text="Address"/>
+                                <Text text="{EMP_ADDRESS}"/>
+                                <Label text="Branch"/>
+                                <Text text="{EMP_BRANCH}"/>
+                            </form:SimpleForm>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                    <uxap:ObjectPageSubSection title="Employee Experience"> 
+                        <uxap:blocks>
+                            <form:SimpleForm editable="false" layout="ResponsiveGridLayout">
+                                <Label text="Id"/>
+                                <Text text="{/employeeExperience/0/ID}"/>
+                                <Label text="Company Name"/>
+                                <Text text="{/employeeExperience/0/CompanyName}"/>                                
+                                <Label text="Role"/>
+                                <Text text="{/employeeExperience/0/Role}"/>                                
+                                <Label text="Start Date"/>
+                                <Text text="{/employeeExperience/0/StartDate}"/>
+                                <Label text="End Date"/>
+                                <Text text="{/employeeExperience/0/EndDate}"/>
+                                <Label text="Responsibilities"/>
+                                <Text text="{/employeeExperience/0/Responsibilities}"/>
+                            </form:SimpleForm>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="Plant Information">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <form:SimpleForm editable="false" layout="ResponsiveGridLayout">
+                                <Label text="Id"/>
+                                <Text text="{/plantModel/0/PLANT_ID}"/>
+                                <Label text="Plant Name"/>
+                                <Text text="{/plantModel/0/PLANT_NAME}"/>                                
+                                <Label text="Location"/>
+                                <Text text="{/plantModel/0/PLANT_LOC}"/>                                
+                                <Label text="Contact"/>
+                                <Text text="{/plantModel/0/PLANT_CONT}"/>
+                                <Label text="Email"/>
+                                <Text text="{/plantModel/0/PLANT_EMAIL}"/>
+                                <Label text="Head of the Plant"/>
+                                <Text text="{/plantModel/0/PLANT_HEAD}"/>
+                                <Label text="Revenue"/>
+                                <Text text="{/plantModel/0/PLANT_REVENUE}"/>
+                                <Label text="Customer Count"/>
+                                <Text text="{/plantModel/0/PLANT_CUST_COUNT}"/>
+                            </form:SimpleForm>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+    </uxap:ObjectPageLayout>
+</mvc:View>

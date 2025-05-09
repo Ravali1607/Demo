@@ -8,39 +8,60 @@
             <contentMiddle><Text text="{locationHeader>/oLocation}" class="plant"></Text></contentMiddle>
             <contentRight><Button icon="sap-icon://sort" press="onSort"></Button></contentRight>
         </Bar>
-        <SearchField liveChange="onSearch"></SearchField>
+        <SearchField liveChange="onSearch" placeholder="Search using designation"></SearchField>
         <Table id="branchTable" mode="MultiSelect" selectionChange="onTable">
             <headerToolbar>
                 <OverflowToolbar >
-                    <ToolbarSpacer ></ToolbarSpacer>
+                <ToolbarSpacer ></ToolbarSpacer>
                     <Button text="Edit"  press="onEdit" id="editButton"></Button>
                     <Button text="Save" press="onSave" id="saveButton" visible="false"></Button>
                     <Button text="Cancel" press="onCancel" id="cancelButton" visible="false"></Button>
                 </OverflowToolbar>
             </headerToolbar>
-            <!-- <columns>
+        </Table>
+        <Panel expandable="true" headerText="Customer Info related to the branch" expand="true">
+        <Table id="customerTable" headerText="Customer Information" items="{/customers}" >
+            <columns>
                 <Column ><Label text="Id" /></Column>
                 <Column ><Label text="Name" /></Column>
-                <Column ><Label text="Blood Group" /></Column>
-                <Column ><Label text="Designation" /></Column>
                 <Column ><Label text="Email" /></Column>
                 <Column ><Label text="Contact" /></Column>
-                <Column ><Label text="Address" /></Column>
-            </columns> -->
-            <!-- <items>
-                <ColumnListItem type="Active" press="onTable">
+                <Column ><Label text="Purchased till now" /></Column>
+            </columns>
+            <items>
+                <ColumnListItem type="Active" press="onCustomerDetail">
                     <cells>
-                        <Text text="{EMP_ID}" />
-                        <Text text="{EMP_NAME}" />
-                        <Text text="{EMP_BLODD_GRP}" />
-                        <Text text="{EMP_DESIG}" />
-                        <Text text="{EMP_EMAIL}" />
-                        <Text text="{EMP_CONT}" />
-                        <Text text="{EMP_ADDRESS}" />
+                        <Text text="{ID}"></Text>
+                        <Text text="{Name}"></Text>
+                        <Text text="{Email}"></Text>
+                        <Text text="{CONTACT}"></Text>
+                        <Text text="{PurchasedTillNow}"></Text>
                     </cells>
                 </ColumnListItem>
-            </items> -->
+            </items>
         </Table>
+        </Panel>
+        <Dialog id="purchasesDialog" resizable="true" title="Customer Purchased Details" draggable="true" >
+            <Table items="{/customerPurchases}" id="purchaseTable" >
+                <columns>
+                    <Column ><Label text="Id"></Label></Column>
+                    <Column ><Label text="Item Name"></Label></Column>
+                    <Column ><Label text="Item Cost"></Label></Column>
+                    <Column ><Label text="Purchase Date"></Label></Column>
+                </columns>
+                <items>
+                    <ColumnListItem >
+                        <cells>
+                            <Text text="{ID}"></Text>
+                            <Text text="{ItemName}"></Text>
+                            <Text text="{ItemCost}"></Text>
+                            <Text text="{path : 'PurchaseDate', formatter: '.purchaseDateFormat'}"></Text>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <endButton><Button text="Close" type="Emphasized" press="onClosePurchase"></Button></endButton>
+        </Dialog>
         </content>
     </Page>
 </mvc:View>

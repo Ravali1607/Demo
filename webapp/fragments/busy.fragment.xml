@@ -2,26 +2,26 @@
 xmlns= "sap.m"
 >    
     
-        <!-- <BusyDialog id="busyIndicator"
-        	title="Loading Data"
-		text="... now loading the data from a far away server"
-		showCancelButton="true"></BusyDialog> -->
-		<Dialog id="detail">
-		<customHeader>
-		<Bar> 
-			<contentLeft><Text text="{designationModel>/selectedDesignation}"/></contentLeft>
-			<contentRight><Button icon="sap-icon://sort" press="onSort" /></contentRight>
-		</Bar>
-		</customHeader>
-			<List items="{/employees}" id="nameList" itemPress="onName">
-            	<StandardListItem title="{EMP_NAME}" type="Active"/>
-        	</List>
-			<footer>
-				<Toolbar >
-					<ToolbarSpacer ></ToolbarSpacer>
-					<!-- <Button text="Display" press="onDisplay"></Button> -->
-					<Button text="Close" press="onClose"></Button>
-				</Toolbar>
-			</footer>
-		</Dialog>
+	<!-- <BusyDialog id="busyIndicator"
+		title="Loading Data"
+	text="... now loading the data from a far away server"
+	showCancelButton="true"></BusyDialog> -->
+	<Dialog id="detail">
+	<customHeader>
+	<Bar> 
+		<contentLeft><Text text="{designationModel>/selectedDesignation}"/></contentLeft>
+		<contentRight><Button icon="sap-icon://sort" press="onSort" /></contentRight>
+	</Bar>
+	</customHeader>
+		<List items="{/employees}" id="nameList" itemPress="onName">
+			<StandardListItem title="{EMP_NAME}" type="Active"/>
+		</List>
+		<footer>
+			<Toolbar >
+				<ToolbarSpacer ></ToolbarSpacer>
+				<!-- <Button text="Display" press="onDisplay"></Button> -->
+				<Button text="Close" press="onClose"></Button>
+			</Toolbar>
+		</footer>
+	</Dialog>
 </core:FragmentDefinition>

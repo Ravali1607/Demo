@@ -189,9 +189,34 @@ sap.ui.define([
         },
         
         onPlant: function(oEvent){
+            if (!that.busyDialog) {
+                that.busyDialog = new sap.m.BusyDialog({
+                    text: "Loading... Please wait"
+                });
+            }
+            that.busyDialog.open();
+            setTimeout(function() {
+                that.busyDialog.close();
             that.getOwnerComponent().getRouter().navTo("View2");
+            },2000);
         },
 
+        onEmpInfo: function(){
+            if (!that.busyDialog) {
+                that.busyDialog = new sap.m.BusyDialog({
+                    text: "Loading... Please wait"
+                });
+            }
+            that.busyDialog.open();
+            setTimeout(function() {
+                that.busyDialog.close();
+            that.getOwnerComponent().getRouter().navTo("View4");
+            }, 1000);
+        },
+
+        onSAC: function(){
+            that.getOwnerComponent().getRouter().navTo("View6");
+        },
         onValueHelpCancel: function() {
             that.valueHelpId.close();
         },
@@ -212,20 +237,32 @@ sap.ui.define([
             that.valueHelpId.open();
         },
 
-        onListId: function(oEvent){
+        onListId: function(oEvent) {
             var oSelected = oEvent.getParameter("listItem");
-            var oItem = oSelected.getBindingContext().getObject();
-            that.getOwnerComponent().getModel().read("/EmployeeExperience",{
-                filters : [new Filter("EmployeeID_EMP_ID",FilterOperator.EQ, oItem.EMP_ID)],
-                success: function(oData){
+            this.handleEmployeeSelection(oSelected);
+            this.valueHelpId.close();
+        },
+        
+        onSuggestionItemSelected: function(oEvent) {
+            var oSelected = oEvent.getParameter("selectedItem");
+            this.handleEmployeeSelection(oSelected);
+        },
+
+        handleEmployeeSelection: function(selectedItem) {
+            var oItem = selectedItem.getBindingContext().getObject();
+            var oInput = this.getView().byId("valueHelpInput");
+            oInput.setValue(oItem.EMP_ID);
+            
+            this.getOwnerComponent().getModel().read("/EmployeeExperience", {
+                filters: [new Filter("EmployeeID_EMP_ID", FilterOperator.EQ, oItem.EMP_ID)],
+                success: function(oData) {
                     var oModel = new JSONModel({
-                        data : oData,
-                        data1 : oItem
-                    })
-                    that.getView().setModel(oModel,"valueHelpModel");
-                }
-            })
-            that.valueHelpId.close();
+                        data: oData,
+                        data1: oItem
+                    });
+                    this.getView().setModel(oModel, "valueHelpModel");
+                }.bind(this)
+            });
         }
     });
 });
@@ -462,3 +499,36 @@ sap.ui.define([
 //         that.getView().setModel(designationModel, "Designations");
 //     }
 // })
+// onListId: function(oEvent){
+//     var oSelected = oEvent.getParameter("listItem");
+//     var oItem = oSelected.getBindingContext().getObject();
+//     var oInput = this.getView().byId("valueHelpInput");
+//     oInput.setValue(oItem.EMP_ID);
+//     that.getOwnerComponent().getModel().read("/EmployeeExperience",{
+//         filters : [new Filter("EmployeeID_EMP_ID",FilterOperator.EQ, oItem.EMP_ID)],
+//         success: function(oData){
+//             var oModel = new JSONModel({
+//                 data : oData,
+//                 data1 : oItem
+//             })
+//             that.getView().setModel(oModel,"valueHelpModel");
+//         }
+//     })
+//     that.valueHelpId.close();
+// },
+// onSuggestionItemSelected: function(oEvent){
+//     var oSelected = oEvent.getParameter("selectedItem");
+//     var oItem = oSelected.getBindingContext().getObject();
+//     var oInput = this.getView().byId("valueHelpInput");
+//     oInput.setValue(oItem.EMP_ID);
+//     that.getOwnerComponent().getModel().read("/EmployeeExperience",{
+//         filters : [new Filter("EmployeeID_EMP_ID",FilterOperator.EQ, oItem.EMP_ID)],
+//         success: function(oData){
+//             var oModel = new JSONModel({
+//                 data : oData,
+//                 data1 : oItem
+//             })
+//             that.getView().setModel(oModel,"valueHelpModel");
+//         }
+//     })
+// }

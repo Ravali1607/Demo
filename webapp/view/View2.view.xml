@@ -1,13 +1,66 @@
-<mvc:View xmlns:core="sap.ui.core" controllerName="demo.controller.VIew2"
+<mvc:View xmlns:feeds="sap.viz.ui5.controls.common.feeds" xmlns:controls="sap.viz.ui5.controls" xmlns:core="sap.ui.core" controllerName="demo.controller.VIew2"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns="sap.m"
+    xmlns:viz.data="sap.viz.ui5.data">
     <Page id="page1" showHeader="false">
         <Bar >
             <contentLeft><Button icon="sap-icon://nav-back" press="onBack"></Button></contentLeft>
             <contentMiddle><Text text="Plant Information" class="plant"></Text></contentMiddle>
         </Bar>
+        <PullToRefresh ></PullToRefresh>
         <List items="{/PLANTS}" itemPress="onPlantDetail">
             <StandardListItem title="{PLANT_NAME}" description="{PLANT_ID}" type="Active" />
         </List>
+        <Panel headerText="Sales Data" expandable="true">
+            <Bar >
+            <contentLeft>
+            <ComboBox id="plantData" items="{Plants>/aPlant}" selectionChange="onSalesPlant" placeholder="Select Plant Name">
+                <items>
+                    <core:Item text="{Plants>}" key="{Plants>}"></core:Item>
+                </items>
+            </ComboBox>
+            </contentLeft>
+            <contentRight><Button text="Add" visible="false" press="onSales" id="addButton" type="Emphasized"></Button></contentRight>
+            </Bar>
+            <Table id="salesData">
+                <columns>
+                    <Column ><Label text="Sales Id"></Label></Column>
+                    <Column ><Label text="Item Name"></Label></Column>
+                    <Column ><Label text="Quantity"></Label></Column>
+                    <Column ><Label text="Actual Revenue"></Label></Column>
+                    <Column ><Label text="Expected Revenue"></Label></Column>
+                    <Column ><Label text="Duration"></Label></Column>
+                    <Column ><Label text="Level"></Label></Column>
+                </columns>
+            </Table>
+            <VBox id="salesGraph"> 
+                <viz:VizFrame id="revenueChart"
+                    uiConfig="{applicationSet:'fiori'}"
+                    height="400px" width="100%"
+                    vizType='line'>
+                    <viz:dataset>
+                        <viz.data:FlattenedDataset id="chartDataset" data="{/salesData}">
+                            <viz.data:dimensions>
+                                <viz.data:DimensionDefinition name="Item" value="{ItemName}"/>
+                            </viz.data:dimensions>
+                            <viz.data:measures>
+                                <viz.data:MeasureDefinition name="Revenue" value="{REVENUE}"/>
+                                <viz.data:MeasureDefinition name="Expected" value="{EXPECTED}"/>
+                            </viz.data:measures>
+                        </viz.data:FlattenedDataset>
+                    </viz:dataset>
+                    <viz:feeds>
+                        <feeds:FeedItem uid="categoryAxis" type="Dimension" values="Item"></feeds:FeedItem>
+                        <feeds:FeedItem uid="valueAxis" type="Measure" values="Revenue"></feeds:FeedItem>
+                        <feeds:FeedItem uid="valueAxis" type="Measure" values="Expected"></feeds:FeedItem>
+                    </viz:feeds>
+                    <viz:dependents>
+                    <viz:Popover id="idPopOver"></viz:Popover>
+                    </viz:dependents>
+                </viz:VizFrame>
+            </VBox>
+        </Panel>
+        <!-- <Button text="Customer" press="onCustomer"></Button> -->
     </Page>
 </mvc:View>

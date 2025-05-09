@@ -11,35 +11,27 @@
             <List items="{Designations>/aDes}" itemPress="onDetail">
                 <StandardListItem title="{Designations>name}" counter="{Designations>count}" type="Active" />
             </List>
-            <Panel class="sapUiSmallMargin" expandable="true" headerText="Find Employee Details">
+            <Panel class="sapUiSmallMargin" expandable="true" headerText="Find Employee Details"  >
                 <Label text="Select an employee" labelFor="valueHelpInput"/>
-                <MultiInput id="valueHelpInput"
+                <Input id="valueHelpInput"
                     showValueHelp="true"
                     valueHelpRequest="onValueHelpRequested"
                     placeholder="Select an ID"
-                    suggestionRows="{
-                        path: '/EMPLOYEE',
-                        length: 10
-                    }">
-                    <suggestionColumns>
-                        <Column>
-                            <Label text="Employee ID"/>
-                        </Column>
-                        <Column>
-                            <Label text="Name"/>
-                        </Column>
-                    </suggestionColumns>
-                    <suggestionRows>
-                        <ColumnListItem>
-                            <Label text="{EMP_ID}" />
-                            <Label text="{EMP_NAME}" />
-                        </ColumnListItem>
-                    </suggestionRows>
-                </MultiInput>
+                    showSuggestion="true"
+                    suggestionItems="{/EMPLOYEE}"
+			        suggestionItemSelected="onSuggestionItemSelected"
+                    >
+                    <suggestionItems>
+                        <core:ListItem
+                            key="{EMP_ID}"
+                            text="{EMP_NAME}"
+                            additionalText="{EMP_ID}" />
+                    </suggestionItems>
+                </Input>
                 <form:SimpleForm title="Employee Information">
                     <form:content>
                         <Label text="Emp Id Guid"></Label>
-                        <Input value="{valueHelpModel>/data/results/0/ID}" editable="false"></Input>
+                        <Input value="{valueHelpModel>/data/results/0/ID}" editable="false" id="input1"></Input>
                         <Label text="Emp Id"></Label>
                         <Input value="{valueHelpModel>/data/results/0/EmployeeID_EMP_ID}" editable="false"></Input>
                         <Label text="Name"></Label>
@@ -72,7 +64,10 @@
         </content>
         <footer>
             <Bar >
-                <contentRight><Button text="{i18n>button1}" id="clickButton1" press="onPlant" type="Emphasized"></Button></contentRight>
+                <contentRight><Button text="{i18n>button1}" id="clickButton1" press="onPlant" type="Emphasized"></Button>
+                    <Button text="Get Employee Info" id="clickButton2" press="onEmpInfo" type="Emphasized"></Button>
+                    <!-- <Button text="Sales &amp; Customers based on Plant" press="onSAC" type="Emphasized"></Button> -->
+                </contentRight>
             </Bar>
         </footer>
     </Page>
