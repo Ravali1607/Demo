@@ -71,7 +71,16 @@ sap.ui.define([
                     var oCustomerModel = new JSONModel({
                         customers : oData.results
                     })
-                    that.getView().setModel(oCustomerModel);
+                    that.byId("customerTable").setModel(oCustomerModel);
+                }
+            })
+            that.getOwnerComponent().getModel().read("/QUAN_INFO",{
+                filters: [new Filter("BRANCH",FilterOperator.EQ, location)],
+                success: function(oData){
+                    var oQuantityModel = new JSONModel({
+                        quantityInfo : oData.results
+                    })
+                    that.byId("quantityInfoTable").setModel(oQuantityModel);
                 }
             })
         },

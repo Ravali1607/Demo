@@ -41,6 +41,30 @@
             </items>
         </Table>
         </Panel>
+        <Panel expandable="true" headerText="Quantity Info related to the branch" expand="true">
+        <Table id="quantityInfoTable" headerText="Quantity Information" items="{/quantityInfo}" >
+            <columns>
+                <Column ><Label text="Id" /></Column>
+                <Column ><Label text="Material Id" /></Column>
+                <Column ><Label text="Quantity Availability" /></Column>
+                <Column ><Label text="Actual Price" /></Column>
+                <Column ><Label text="Selling Price" /></Column>
+                <Column ><Label text="Margin" /></Column>
+            </columns>
+            <items>
+                <ColumnListItem type="Active">
+                    <cells>
+                        <Text text="{ID}"></Text>
+                        <Text text="{MAT_QUAN_ID}"></Text>
+                        <Text text="{QUAN_AVAIL}"></Text>
+                        <Text text="{ACT_PRICE}"></Text>
+                        <Text text="{SEL_PRICE}"></Text>
+                        <Text text="{MARGIN}"></Text>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+        </Panel>
         <Dialog id="purchasesDialog" resizable="true" title="Customer Purchased Details" draggable="true" >
             <Table items="{/customerPurchases}" id="purchaseTable" >
                 <columns>

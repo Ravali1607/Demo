@@ -7,13 +7,15 @@ sap.ui.define([
     "sap/m/ColumnListItem",
     "sap/m/MessageBox",
     "sap/ui/core/Fragment",
-    "sap/ui/model/Sorter"
-], (Controller,Filter,FilterOperator,JSONModel,Column,ColumnListItem,MessageBox,Fragment,Sorter) => {
+    "sap/ui/model/Sorter",
+    "sap/m/Bar"
+], (Controller,Filter,FilterOperator,JSONModel,Column,ColumnListItem,MessageBox,Fragment,Sorter,Bar) => {
     "use strict";
     var that;
     return Controller.extend("demo.controller.View1", {
         onInit() {
             that = this;
+            this.initRichTextEditor(false);
             that.getOwnerComponent().getModel().read("/EMPLOYEE", {
                 success: function(data) {
                     var designationArray = data.results.reduce((des, emp) => {
@@ -263,7 +265,47 @@ sap.ui.define([
                     this.getView().setModel(oModel, "valueHelpModel");
                 }.bind(this)
             });
-        }
+        },
+        handleSelect: function (oEvent) {
+			var sSelectedKey = oEvent.getParameters().selectedItem.getKey();
+			if (this.oRichTextEditor) {
+				this.oRichTextEditor.destroy();
+			}
+			switch (sSelectedKey) {
+				case "TinyMCE5":
+					this.initRichTextEditor(true);
+					break;
+				default:
+					this.initRichTextEditor(false);
+					break;
+			}
+		},
+		initRichTextEditor: function (bIsTinyMCE5) {
+			var that = this,
+				sHtmlValue = ""
+                that.editorContent = "";
+			sap.ui.require(["sap/ui/richtexteditor/RichTextEditor", "sap/ui/richtexteditor/library"],
+				function (RTE, library) {
+					var EditorType = library.EditorType;
+					that.oRichTextEditor = new RTE("myRTE", {
+						editorType: bIsTinyMCE5 ? EditorType.TinyMCE5 : EditorType.TinyMCE6,
+						width: "100%",
+						height: "600px",
+						customToolbar: true,
+						showGroupFont: true,
+						showGroupLink: true,
+						showGroupInsert: true,
+						value: sHtmlValue,
+						ready: function () {
+							bIsTinyMCE5 ? this.addButtonGroup("styleselect").addButtonGroup("table") : this.addButtonGroup("styles").addButtonGroup("table");
+						},
+                        change: function(){
+                            that.editorContent = that.oRichTextEditor.getValue();
+                        }
+					});
+				that.getView().byId("idVerticalLayout").addContent(that.oRichTextEditor);
+			});
+		}
     });
 });
 
