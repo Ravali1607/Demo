@@ -1,0 +1,67 @@
+<mvc:View xmlns:table="sap.ui.table" xmlns:unified="sap.ui.unified" xmlns:core="sap.ui.core" controllerName="demo.controller.View6"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    >
+    <Page id="page5" showNavButton="true" navButtonPress="onNavBack" title="Quantity Info Data">
+        <content>
+            <table:Table rows="{/QUAN_INFO}" >
+                <table:columns>
+                    <table:Column >
+                        <Label text="Id"></Label>
+                        <table:template>
+                            <Text text="{ID}"></Text>
+                        </table:template>
+                    </table:Column>
+                </table:columns>
+                <table:columns>
+                    <table:Column >
+                        <Label text="Material Qty Id"></Label>
+                        <table:template>
+                            <Text text="{MAT_QUAN_ID}"></Text>
+                        </table:template>
+                    </table:Column>
+                </table:columns>
+                <table:columns>
+                    <table:Column >
+                        <Label text="Branch"></Label>
+                        <table:template>
+                            <Text text="{BRANCH}"></Text>
+                        </table:template>
+                    </table:Column>
+                </table:columns>
+                <table:columns>
+                    <table:Column >
+                        <Label text="Qty Available"></Label>
+                        <table:template>
+                            <Text text="{QUAN_AVAIL}"></Text>
+                        </table:template>
+                    </table:Column>
+                </table:columns>
+                <table:columns>
+                    <table:Column >
+                        <Label text="Actual Price"></Label>
+                        <table:template>
+                            <Text text="{ACT_PRICE}"></Text>
+                        </table:template>
+                    </table:Column>
+                </table:columns>
+                <table:columns>
+                    <table:Column >
+                        <Label text="Selling Price"></Label>
+                        <table:template>
+                            <Text text="{SEL_PRICE}"></Text>
+                        </table:template>
+                    </table:Column>
+                </table:columns>
+                <table:columns>
+                    <table:Column >
+                        <Label text="Margin"></Label>
+                        <table:template>
+                            <Text text="{MARGIN}"></Text>
+                        </table:template>
+                    </table:Column>
+                </table:columns>
+            </table:Table>   
+        </content>
+    </Page>
+</mvc:View>

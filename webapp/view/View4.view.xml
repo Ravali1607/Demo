@@ -3,7 +3,25 @@
     xmlns="sap.m">
     <Page id="page3" showHeader="true" navButtonPress="onBack" showNavButton="true" title="List of Employees">
         <content>
-            <Table items="{/EMPLOYEE}">
+            <Bar>
+                <contentMiddle >
+                    <Input id="branchValueHelpDialog"
+                        showValueHelp="true"
+                        valueHelpRequest="onBranchValueHelp"
+                        placeholder="Branch"
+                        value="{view>/branchFilter}"
+                        width="25%" 
+                        />
+                    <Input id="desValueHelpDialog"
+                        valueHelpRequest="onDesginationValueHelp"
+                        showValueHelp="true"
+                        placeholder="Designation"
+                        value="{view>/designationFilter}"
+                        width="25%"/>
+                    <Button icon="sap-icon://clear-filter" press="onClearFilters" tooltip="Clear filters"/>
+                </contentMiddle>
+            </Bar>
+            <Table items="{/EMPLOYEE}" id="employeeTable">
                 <columns>
                     <Column ><Label text="Names"></Label></Column>
                 </columns>

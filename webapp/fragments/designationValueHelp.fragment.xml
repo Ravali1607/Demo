@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core" xmlns="sap.m">    
+    <Dialog id="desginationValueHelp" title="Select Designation">
+        <List id="desginationList" items="{/aDes}" mode="SingleSelectMaster" selectionChange="onBranchItem">
+            <StandardListItem title="{name}" type="Active"></StandardListItem>
+        </List> 
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer></ToolbarSpacer>
+                <Button text="Cancel" type="Emphasized" press="onValueHelpCancel"></Button>
+                <Button text="OK" type="Accept" press="onDesignationConfirm"></Button>
+            </Toolbar>
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

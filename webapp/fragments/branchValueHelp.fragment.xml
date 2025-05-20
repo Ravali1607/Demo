@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core" xmlns="sap.m">    
+    <Dialog id="branchValueHelp" title="Select Branch">
+        <List id="branchList" items="{/aDes}" mode="SingleSelectMaster" selectionChange="onBranchItem">
+            <StandardListItem title="{branch}" type="Active"></StandardListItem>
+        </List>
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer></ToolbarSpacer>
+                <Button text="Cancel" type="Emphasized" press="onValueHelpCancel"></Button>
+                <Button text="OK" type="Accept" press="onBranchConfirm"></Button>
+            </Toolbar>
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

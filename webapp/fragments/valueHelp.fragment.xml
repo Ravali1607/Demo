@@ -2,7 +2,7 @@
 xmlns= "sap.m"
 >    
     <Dialog id="valueHelpId" title="Employee ID">
-        <List id="idList" items="{/items}" itemPress="onListId">
+        <List id="idList" items="{/empInfo/results}" itemPress="onListId">
             <StandardListItem title="{EMP_ID}" type="Active"></StandardListItem>
         </List>
         <footer>

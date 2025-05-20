@@ -216,7 +216,7 @@ sap.ui.define([
             }, 1000);
         },
 
-        onSAC: function(){
+        onMatData: function(){
             that.getOwnerComponent().getRouter().navTo("View6");
         },
         onValueHelpCancel: function() {
@@ -227,15 +227,8 @@ sap.ui.define([
             if(!that.valueHelpId){
                 that.valueHelpId = sap.ui.xmlfragment("demo.fragments.valueHelp", that);
             }
-            // var oModel = that.getView().getModel("EmpModel");
-            that.getOwnerComponent().getModel().read("/EMPLOYEE",{
-                success: function(oData){
-                    var oModel = new JSONModel({
-                        items : oData.results
-                    })
-                    that.valueHelpId.setModel(oModel);
-                }
-            })
+            var oModel = that.getView().getModel("EmpModel");
+            that.valueHelpId.setModel(oModel);
             that.valueHelpId.open();
         },
 

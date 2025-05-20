@@ -61,21 +61,23 @@
                     </form:content>
                 </form:SimpleForm>
             </Panel>
-            <layout:VerticalLayout id="idVerticalLayout">
-            <HBox >
-                <Label text="Select TinyMCE version" labelFor="selectId" class="sapUiSmallMarginEnd"></Label>
-                <Select id="selectId" change="handleSelect">
-                    <core:Item text="RichText with TinyMCE6" key="TinyMCE6"></core:Item>
-                    <core:Item text="RichText with TinyMCE5" key="TinyMCE5"></core:Item>
-                </Select>
-            </HBox>
-            </layout:VerticalLayout>
+            <Panel expandable="true" headerText="Rich Text Editor" class="sapUiSmallMargin">
+                <layout:VerticalLayout id="idVerticalLayout">
+                    <HBox >
+                        <Label text="Select TinyMCE version" labelFor="selectId" class="sapUiSmallMarginEnd"></Label>
+                        <Select id="selectId" change="handleSelect">
+                            <core:Item text="RichText with TinyMCE6" key="TinyMCE6"></core:Item>
+                            <core:Item text="RichText with TinyMCE5" key="TinyMCE5"></core:Item>
+                        </Select>
+                    </HBox>
+                </layout:VerticalLayout>
+            </Panel>
         </content>
         <footer>
             <Bar >
                 <contentRight><Button text="{i18n>button1}" id="clickButton1" press="onPlant" type="Emphasized"></Button>
                     <Button text="Get Employee Info" id="clickButton2" press="onEmpInfo" type="Emphasized"></Button>
-                    <!-- <Button text="Sales &amp; Customers based on Plant" press="onSAC" type="Emphasized"></Button> -->
+                    <Button text="Get Material Data" press="onMatData" type="Emphasized"></Button>
                 </contentRight>
             </Bar>
         </footer>
