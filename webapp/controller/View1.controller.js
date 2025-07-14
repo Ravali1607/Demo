@@ -31,6 +31,7 @@ sap.ui.define([
                         aDes: designationArray
                     });
                     that.getView().setModel(designationModel, "Designations");
+                    
                 }
             });
         },
@@ -216,9 +217,6 @@ sap.ui.define([
             }, 1000);
         },
 
-        onMatData: function(){
-            that.getOwnerComponent().getRouter().navTo("View6");
-        },
         onValueHelpCancel: function() {
             that.valueHelpId.close();
         },

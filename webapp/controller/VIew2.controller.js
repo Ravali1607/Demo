@@ -159,7 +159,7 @@ sap.ui.define([
                 }
             })
             that.onSalesPlant();
-            that.customer.close();
+            that.sales.close();
             that.reset();
         },
         reset: function(){
@@ -173,7 +173,7 @@ sap.ui.define([
             sap.ui.getCore().byId("s_dur").setValue("");
         },
         onCancelSales: function(){
-            that.customer.close();
+            that.sales.close();
         }
     })
 })

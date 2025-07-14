@@ -77,7 +77,6 @@
             <Bar >
                 <contentRight><Button text="{i18n>button1}" id="clickButton1" press="onPlant" type="Emphasized"></Button>
                     <Button text="Get Employee Info" id="clickButton2" press="onEmpInfo" type="Emphasized"></Button>
-                    <Button text="Get Material Data" press="onMatData" type="Emphasized"></Button>
                 </contentRight>
             </Bar>
         </footer>

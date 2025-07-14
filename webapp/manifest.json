@@ -130,6 +130,13 @@
                   "target": [
                     "TargetView6"
                   ]
+                },
+                {
+                  "name": "View7",
+                  "pattern": "View7",
+                  "target": [
+                    "TargetView7"
+                  ]
                 }
             ],
             "targets": {
@@ -152,10 +159,6 @@
                 "TargetView5": {
                   "id": "View5",
                   "name": "View5"
-                },
-                "TargetView6": {
-                  "id": "View6",
-                  "name": "View6"
                 }
             }
         },
